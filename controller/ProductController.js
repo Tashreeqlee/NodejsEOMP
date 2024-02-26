@@ -5,7 +5,7 @@ import { products } from "../model/index.js";
 const productRouter = express.Router();
 
 //fetch all products
-productRouter.get("/products", (req, res) => {
+productRouter.get("/", (req, res) => {
   try {
     products.fetchProducts(req, res);
   } catch (e) {

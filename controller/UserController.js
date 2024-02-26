@@ -4,7 +4,7 @@ import { users } from "../model/index.js";
 import { verifyAToken } from "../middleware/AuthenticateUser.js";
 const userRouter = express.Router();
 // Fetch Users
-userRouter.get("/users", (req, res) => {
+userRouter.get("/", (req, res) => {
   try {
     users.fetchUsers(req, res);
   } catch (e) {
