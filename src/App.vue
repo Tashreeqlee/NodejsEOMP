@@ -17,9 +17,19 @@ export default {
 
 </script>
 
+
+
+
 <style>
+@import url("https://fonts.googleapis.com/css2?family=Nova+Square&display=swap");
+/* @import url('https://fonts.googleapis.com/css2?family=Grenze+Gotisch:wght@100..900&display=swap'); */
+
+
 #app {
-  font-family: A, Helvetica, Arial, sans-serif;
+  /* font-family: "Anta", sans-serif; */
+  font-family: "Nova Square", sans-serif;
+  font-weight: 400;
+  font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;

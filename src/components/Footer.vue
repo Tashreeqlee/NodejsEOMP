@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="row fixed bottom">
             <p class="lead">
                 Matrix Performance &copy; <span>{{ currYear }}</span>
             </p>
@@ -21,7 +21,6 @@
 .lead {
     background-color: #EF370E;
     color: #EEEBDD;
-    
     justify-content: center;
   }
 

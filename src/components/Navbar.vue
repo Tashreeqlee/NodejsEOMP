@@ -3,7 +3,7 @@
       <div class="container-fluid">
         <router-link class="navbar-brand" to="/"
           ><img
-            src=""
+            src="https://i.postimg.cc/9fKpzgtd/fe6f6a97-75c5-46dd-834e-cd8c93c605b9.jpg"
             alt="Logo"
             class="navImage"
         /></router-link>
@@ -49,12 +49,12 @@
 <style scoped>
   nav {
     background-color: #EF370E !important;
-    /* margin-bottom: 40px; */
+    
     
   }
   .navImage {
-    height: 60px;
-    width: 60px;
+    height: 90px;
+    width: 90px;
     
   }
   .navbar-nav {
