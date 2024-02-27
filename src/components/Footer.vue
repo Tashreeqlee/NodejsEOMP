@@ -1,11 +1,9 @@
 <template>
     <div>
-        <div class="container-fluid">
             <p class="lead">
                 Matrix Performance &copy; <span>{{ currYear }}</span>
             </p>
         </div>
-    </div>
 </template>
 
 <script>
@@ -20,5 +18,11 @@
 </script>
 
 <style scoped>
+.lead {
+    background-color: #EF370E;
+    color: #EEEBDD;
+    
+    justify-content: center;
+  }
 
 </style>

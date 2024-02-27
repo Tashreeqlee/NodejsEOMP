@@ -48,8 +48,8 @@
 
 <style scoped>
   nav {
-    background-color: #1B1717 !important;
-    margin-bottom: 20px;
+    background-color: #EF370E !important;
+    /* margin-bottom: 40px; */
     
   }
   .navImage {
@@ -58,7 +58,7 @@
     
   }
   .navbar-nav {
-    margin-left: auto;
+    margin: auto;
   }
   .navButtons {
     margin-right: 20px;
@@ -71,7 +71,7 @@
     text-decoration: none;
   }
   nav a.router-link-exact-active {
-  border-bottom: 2px solid #CE1212;
+  border-bottom: 2px solid ;
 }
 
 </style>
