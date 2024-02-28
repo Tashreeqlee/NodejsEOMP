@@ -4,8 +4,9 @@ import { createToken } from "../middleware/AuthenticateUser.js";
 class Users {
   fetchUsers(req, res) {
     const qry = `
-        SELECT userID, firstName, lastName, userAge, gender, emailAdd, userPwd, userRole
-        FROM Users;
+    SELECT userID, firstName, lastName,
+    userAge, gender, emailAdd, userPass, userRole, userProfile
+    FROM Users;
         `
     db.query(qry, (err, results) => {
       if (err) throw err
@@ -17,8 +18,9 @@ class Users {
   }
   fetchUser(req, res) {
     const qry = `
-        SELECT userID, firstName, lastName, userAge, gender, emailAdd, userPwd, userRole
-        FROM Users
+    SELECT userID, firstName, lastName,
+    userAge, gender, emailAdd, userPass, userRole, userProfile
+    FROM Users
         WHERE userID = ${req.params.id};
         `
     db.query(qry, (err, result) => {
@@ -32,10 +34,10 @@ class Users {
   async createUser(req, res) {
     // Payload
     let data = req.body
-    data.userPwd = await hash(data?.userPwd, 8);
+    data.userPass = await hash(data?.userPass, 8);
     let user = {
       emailAdd: data.emailAdd,
-      userPwd: data.userPwd,
+      userPass: data.userPass,
     };
     const qry = `
         INSERT INTO Users
@@ -60,8 +62,8 @@ class Users {
   }
   async updateUser(req, res) {
     const data = req.body;
-    if (data?.userPwd) {
-      data.userPwd = await hash(data?.userPwd, 8);
+    if (data?.userPass) {
+      data.userPass = await hash(data?.userPass, 8);
     }
 
     const qry = `
@@ -91,10 +93,10 @@ class Users {
     });
   }
   login(req, res) {
-    const { emailAdd, userPwd } = req.body;
+    const { emailAdd, userPass } = req.body;
     const qry = `
         SELECT userID, firstName, lastName,
-        userAge, gender, emailAdd, userPwd, userRole
+        userAge, gender, emailAdd, userPass, userRole, userProfile
         FROM Users
         WHERE emailAdd = '${emailAdd}';
         `;
@@ -107,7 +109,7 @@ class Users {
         });
       } else {
         //VALIDATE PASSWORD
-        const validPass = await compare(userPwd, result[0].userPwd);
+        const validPass = await compare(userPass, result[0].userPass);
         if (validPass) {
           const token = createToken({
             emailAdd,
