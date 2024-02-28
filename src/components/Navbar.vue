@@ -63,7 +63,7 @@
   .navButtons {
     margin-right: 20px;
     color: #EEEBDD;
-    
+    font-size: x-large; 
   }
 
   
