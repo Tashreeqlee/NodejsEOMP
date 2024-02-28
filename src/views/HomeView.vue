@@ -1,11 +1,24 @@
 <template>
-  <div class="home">
-    <div id="home_image">
-      <h1>WELCOME TO MATRIX PERFORMANCE</h1>
+  <div class="home container-fluid">
+    <div class="text-white text-center">
+      <h1 class="heading animate__animated animate__pulse">
+        Welcome To Matrix Performance
+      </h1>
       <img id="landing_page_image" class="img-fluid" src="https://i.postimg.cc/0ydGgf45/1000262055-2280-1536.jpg" alt="home_image">
-      <h3>"EXCEDE YOUR LIMITS AND ENTER THE MATRIX"</h3>
+      <h4 class="heading text-dark">Exceed Your Limits And Enter The Matrix</h4>
+      <div class="p-5">
+        <router-link to="/about">
+          <button
+            type="button"
+            class="btn btn-outline-dark heading animate__animated animate__zoomIn animate__delay-2s"
+          >
+            Learn More
+          </button>
+        </router-link>
+      </div>
     </div>
-
+  
+    
     <!-- carousel start -->
     <div id="wheels" class="container-fluid">
       <!-- carousel -->
@@ -21,10 +34,10 @@
           </div>
           <div class="carousel-item">
             <img
-              id="wheel_image"
-              src="https://i.postimg.cc/0jg8xp6Z/uc-27-1.png"
-              class="img-fluid"
-              alt="wheel_2"
+            id="wheel_image"
+            src="https://i.postimg.cc/0jg8xp6Z/uc-27-1.png"
+            class="img-fluid"
+            alt="wheel_2"
             />
           </div>
           <div class="carousel-item">
@@ -41,9 +54,9 @@
               src="https://i.postimg.cc/0Q4zSMzJ/uc-35.png"
               class="img-fluid"
               alt="wheel_4"
-            />
-          </div>
-          <div class="carousel-item">
+              />
+            </div>
+            <div class="carousel-item">
             <img
               id="wheel_image"
               src="https://i.postimg.cc/D0YRnhYh/uc-25.png"
@@ -123,3 +136,4 @@ export default {
 
 
 </style>
+
