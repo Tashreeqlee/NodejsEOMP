@@ -113,7 +113,7 @@ class Users {
         if (validPass) {
           const token = createToken({
             emailAdd,
-            userPwd,
+            userPass,
           });
           res.json({
             status: res.statusCode,
