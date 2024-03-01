@@ -20,7 +20,7 @@
     <div class="bgcolor">
     <div class="position-relative overflow-hidden text-center" id="hero">
       <div class="col-md-5 p-lg-5 mx-auto my-5">
-        <h1 class="display-3">About Us</h1>
+        <h1 class="display-3 text-animation">About Us</h1>
       </div>
     </div>
   
@@ -80,7 +80,7 @@
   
     <div class="position-relative overflow-hidden text-center" id="hero">
       <div class="col-md-5 p-lg-5 mx-auto my-5">
-        <h1 class="display-3">Meet Our Mascots </h1>
+        <h1 class="display-3">Meet Our Mascots</h1>
       </div>
     </div>
   
@@ -166,6 +166,19 @@
     transform: scale(1.1);
 
   }
+  .text-animation {
+  overflow: hidden;
+  animation: typing 3s backwards;
+  white-space: nowrap;
+}
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
 
   /* Responsiveness */
 

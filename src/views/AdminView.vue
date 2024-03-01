@@ -4,7 +4,7 @@
             <h1 class="display-5">Products</h1>
         </div>
     </div>
-    <div>
+    <div class="bgcolor">
         <AddProdComp/>
         <table class="table-responsive-md table table-bordered">
         <thead>
@@ -131,6 +131,9 @@ export default {
 };
 </script>
 <style scoped>
+.bgcolor {
+    background-color: #C8C8C8;
+}
 
 #hero {
     background-color: black;

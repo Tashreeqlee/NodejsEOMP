@@ -1,11 +1,11 @@
 <template>
   <div class="home container-fluid">
     <div class="text-white text-center">
-      <h1 class="heading animate__animated animate__pulse">
+      <h1 class="heading text-animation">
         Welcome To Matrix Performance
       </h1>
-      <img id="landing_page_image" class="img-fluid" src="https://i.postimg.cc/0ydGgf45/1000262055-2280-1536.jpg" alt="home_image">
-      <h4 class="heading text-dark">Exceed Your Limits And Enter The Matrix</h4>
+      <img id="landing_page_image" class="img-fluid pb-4" src="https://i.postimg.cc/0ydGgf45/1000262055-2280-1536.jpg" alt="home_image">
+      <h4 class="heading text-dark text-animation">Exceed Your Limits And Enter The Matrix</h4>
       <div class="p-5">
         <router-link to="/about">
           <button
@@ -129,6 +129,55 @@ export default {
   flex-direction: row;
   justify-content: center;
   align-content: center;
+}
+.text-animation {
+  overflow: hidden;
+  animation: typing 3s backwards;
+  white-space: nowrap;
+  color: #EF370E;
+}
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+.text-animation:hover {
+  transform: scale(1.1);
+}
+
+@media screen and (max-width: 768px) {
+  .text-animation {
+    font-size: 14px;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .text-animation {
+    font-size: 12px;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  #wheel_image {
+    height: 15rem;
+  }
+
+  #carouselExample {
+    width: 50%;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  #wheel_image {
+    height: 10rem;
+  }
+
+  #carouselExample {
+    width: 70%;
+  }
 }
 
 

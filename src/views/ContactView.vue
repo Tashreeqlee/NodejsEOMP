@@ -88,5 +88,18 @@
 .bgcolor{
     background-color: #C8C8C8;
 }
+.text-animation {
+  overflow: hidden;
+  animation: typing 3s backwards;
+  white-space: nowrap;
+}
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
 
 </style>

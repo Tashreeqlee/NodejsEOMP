@@ -59,6 +59,19 @@
 
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
+.btn {
+        background-color: #EF370E;
+        color: white;
+        border-radius:0%;
+        width: 60px;
+        margin-top: 7px;
+        margin-bottom: 7px;
+    }
+
+    .btn:hover {
+        background-color: white;
+        color: #EF370E;
+    }
 
 </style>

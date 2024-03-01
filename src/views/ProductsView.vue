@@ -1,7 +1,8 @@
 <template>
-    <h1 class="text-center">
+  <div class="bgcolor">
+    <h2 class="text-center display-2 text-animation">
       Products
-    </h1>
+    </h2>
     <div class="buttons">
       <div class="search">
         <input type="text" v-model="search" placeholder="search" />
@@ -22,6 +23,7 @@
     <div v-else class="d-flex justify-content-center">
       <SpinnerComp/>
     </div>
+  </div>
   </template>
 
 <script>
@@ -74,10 +76,28 @@ export default {
 
 <style scoped>
 
+.bgcolor{
+  background-color: #C8C8C8;
+}
+.text-animation {
+  overflow: hidden;
+  animation: typing 3s backwards;
+  white-space: nowrap;
+}
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
 .buttons {
   display: flex;
-  justify-content: space-between;
-  margin-bottom: 20px;
+  justify-content: space-around;
+  padding: 10px;
+  margin: 10px;
 }
 
 .search {
@@ -88,9 +108,10 @@ export default {
   background-color: #EF370E;
   color: white;
   padding: 10px 20px;
-  border: none;
-  cursor: pointer;
   margin-right: 10px;
+}
+.sort:hover{
+  transform: scale(1.1);
 }
 
 input {

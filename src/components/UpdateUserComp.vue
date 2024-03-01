@@ -80,6 +80,25 @@
     };
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
+.btn {
+        background-color: #EF370E;
+        color: white;
+        margin-bottom: 5px;
+    }
+
+    .btn:hover {
+        background-color: white;
+        color: black;
+    }
+
+    .modal-content {
+        background-color: #EF370E;
+        color: white;
+    }
+
+    .modal-body {
+        background-color: #EF370E;
+    }
 
 </style>
