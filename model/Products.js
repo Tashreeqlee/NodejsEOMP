@@ -48,7 +48,7 @@ class Products{
             DELETE FROM Products WHERE prodID = ${req.params.id}
         `;
     
-        db.query(query, [req.params.id], (err) => {
+        db.query(query, (err) => {
           if (err) throw err;
           res.json({
             status: res.statusCode,
