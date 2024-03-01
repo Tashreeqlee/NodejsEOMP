@@ -27,7 +27,7 @@
                 <td class="no1">{{ product.category }}</td>
                 <td class="no"><img class="admin-img" :src=product.prodUrl></td>
                 <td><UpdateProdComp :product="product"/>
-                    <button class="btn" @click="deleteProduct(product.prodID)">Delete</button>
+                    <button class="btn" @click="deleteProduct(product)">Delete</button>
                 </td>
             </tr>
             <div class="m-5" v-else>

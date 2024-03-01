@@ -17,7 +17,7 @@
                     </div>
                     <div class="modal-footer">
                         <button class="btn" type="button" data-bs-dismiss="modal">Close</button>
-                        <button class="btn" type="button" data-bs-dismiss="modal" @click="updateProd">SAVE</button>
+                        <button class="btn" type="button" data-bs-dismiss="modal" @click.prevent="updateProd">SAVE</button>
                     </div>
                 </div>
             </div>

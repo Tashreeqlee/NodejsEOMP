@@ -11,7 +11,7 @@
 </template>
 
 <script>
-    import SpinnerComp from '@/components/SpinnerComp.vue';
+    import SpinnerComp from '@/components/SpinnerComp';
 export default {
     props: ["prodID"],
     computed: {

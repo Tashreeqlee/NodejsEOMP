@@ -98,7 +98,7 @@ export default createStore({
     },
     async updateProduct(context, payload) {
       try{
-        let {msg} = (await axios.patch(`${matrixUrl}products/update/${payload.prodID}`, payload)).data
+        let {msg} = await (await axios.patch(`${matrixUrl}products/update/${payload.prodID}`, payload)).data
         
           context.dispatch('fetchProducts')
           sweet({
@@ -118,7 +118,7 @@ export default createStore({
     },
     async deleteProduct(context, payload) {
       try{
-        let {msg} = (await axios.delete(`${matrixUrl}products/${payload.prodID}`)).data
+        let {msg} = await (await axios.delete(`${matrixUrl}products/delete/${payload.prodID}`)).data
           context.dispatch('fetchProducts')
           sweet({
             title: 'Delete product',
