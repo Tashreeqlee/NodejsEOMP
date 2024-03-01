@@ -11,7 +11,7 @@
                 <div class="row">
                   <div class="col-md-9 mb-md-0 mb-5">
                     <form
-  action="https://formspree.io/f/myyrzeky"
+  action="https://formspree.io/f/xoqgwrkw"
   method="POST"
 >
                       <div class="row p-3">
@@ -83,7 +83,14 @@
     }
 </script>
 
-<style  scoped>
+<style scoped>
+
+.btn{
+  background-color: #EF370E;
+  color: white;
+  padding: 10px 20px;
+  margin-right: 10px;
+}
 
 .bgcolor{
     background-color: #C8C8C8;

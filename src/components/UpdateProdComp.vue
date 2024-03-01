@@ -1,7 +1,7 @@
 <template>
     <div>
-        <button class="btn" type="button" @click="editModal(product.prodID)" data-bs-toggle="modal" :data-bs-target="'#exampleModal' + product.prodID">Edit</button>
-        <div class="modal fade" :id="'exampleModal' + product.prodID" tabindex="-1" :aria-labelledBy="'exampleModalLabel' + product.prodID" aria-hidden="true">
+        <button class="btn" type="button" @click="editModal(product.prodID)" data-bs-toggle="modal" :data-bs-target="'#updateProductModal' + product.prodID">Edit</button>
+        <div class="modal fade" :id="'updateProductModal' + product.prodID" tabindex="-1" :aria-labelledBy="'exampleModalLabel' + product.prodID" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -9,15 +9,15 @@
                         <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="close"></button>
                     </div>
                     <div class="modal-body">
-                        <input class="input" type="text" name="name" placeholder="Product Name" v-model="editProduct.prodName">
-                        <input class="input" type="text" name="name" placeholder="Quantity" v-model="editProduct.quantity">
-                        <input class="input" type="text" name="name" placeholder="Price" v-model="editProduct.amount">
-                        <input class="input" type="text" name="name" placeholder="Category" v-model="editProduct.category">
-                        <input class="input" type="text" name="name" placeholder="Url" v-model="editProduct.prodUrl">
+                        <input class="input" type="text" name="name" placeholder="Product Name" v-model="payload.prodName">
+                        <input class="input" type="text" name="name" placeholder="Quantity" v-model="payload.quantity">
+                        <input class="input" type="text" name="name" placeholder="Price" v-model="payload.amount">
+                        <input class="input" type="text" name="name" placeholder="Category" v-model="payload.category" >
+                        <input class="input" type="text" name="name" placeholder="Url" v-model="payload.prodUrl">
                     </div>
                     <div class="modal-footer">
                         <button class="btn" type="button" data-bs-dismiss="modal">Close</button>
-                        <button class="btn" type="button" data-bs-dismiss="modal" @click="updateProd(product.prodID)">SAVE</button>
+                        <button class="btn" type="button" data-bs-dismiss="modal" @click="updateProd">SAVE</button>
                     </div>
                 </div>
             </div>
@@ -33,16 +33,15 @@
                 editProduct: {
                     ...this.product,
                 },
-                editProductID: null,
-                model: {
-                    product: {
-                        prodName: "",
-                        quantity: "",
-                        amount: "",
-                        category: "",
-                        prodUrl: "",
-                    },
+                payload: {
+                    prodID: this.product.prodID,
+                    prodName: this.product.prodName,
+                    quantity: this.product.quantity,
+                    amount: this.product.amount,
+                    category: this.product.category,
+                    prodUrl: this.product.prodUrl,
                 },
+                editProductID: null,
             };
         },
         computed: {
@@ -59,17 +58,9 @@
                     ),
                 };
             },
-            updateProd(prodID) {
-                this.$store.dispatch("updateProducts", {
-                    prodID: prodID,
-                    ...this.editProduct,
-                })
-                .then(() => {
-                    console.log("Updated");
-                })
-                .catch((err) => {
-                    console.error("Error: ", err)
-                });
+            updateProd() {
+        
+                this.$store.dispatch("updateProduct", this.payload);
             },
         },
     };

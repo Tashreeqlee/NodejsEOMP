@@ -1,5 +1,5 @@
 <template>
-    <div class="row fixed bottom">
+    <div class="fixed bottom">
             <p class="lead">
                 Matrix Performance &copy; <span>{{ currYear }}</span>
             </p>

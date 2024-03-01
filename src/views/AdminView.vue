@@ -53,7 +53,7 @@
                 <th class="no1" scope="col">Email Address</th>
                 <th class="no" scope="col">Password</th>
                 <th class="no" scope="col">User Profile</th>
-                <th scope="col">Edit/Delete Product</th>
+                <th scope="col">Edit/Delete User</th>
             </tr>
         </thead>
         <tbody class="user-display" v-for="user in users" :key="user.userID" :user="user">
@@ -68,7 +68,7 @@
                 <td class="no">{{ user.userPass }}</td>
                 <td class="no"><img class="admin-img" :src=user.userProfile></td>
                 <td><UpdateUserComp :user="user"/>
-                    <button class="btn" @click="deleteUser(user.userID)">Delete</button>
+                    <button class="btn" @click.prevent="deletingUser(user)">Delete</button>
                 </td>
             </tr>
             <div class="m-5" v-else>
@@ -83,7 +83,7 @@ import AddProdComp from '@/components/AddProdComp.vue';
 import AddUserComp from '@/components/AddUserComp.vue';
 import UpdateProdComp from '@/components/UpdateProdComp.vue';
 import UpdateUserComp from '@/components/UpdateUserComp.vue';
-import SpinnerComp from '@/components/SpinnerComp.vue';
+import SpinnerComp from '@/components/SpinnerComp';
 export default {
   computed: {
             products() {
@@ -112,9 +112,9 @@ export default {
                     }, 500)
                 }
             },
-            deleteUser(id) {
+            deletingUser(user) {
                 if (confirm("You sure?")) {
-                    this.$store.dispatch("deleteUser", id);
+                    this.$store.dispatch("deleteUser", user);
                     setTimeout(() => {
                         location.reload();
                     }, 500);

@@ -28,7 +28,7 @@
 
 <script>
 import CardComp from '@/components/CardComp.vue';
-import SpinnerComp from '@/components/SpinnerComp.vue';
+import SpinnerComp from '@/components/SpinnerComp';
 
 export default {
   data() {

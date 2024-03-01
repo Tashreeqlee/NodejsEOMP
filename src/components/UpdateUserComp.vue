@@ -69,12 +69,6 @@
                     userID: userID,
                     ...this.editUser,
                 })
-                .then(() => {
-                    console.log("Updated");
-                })
-                .catch((err) => {
-                    console.error("Error: ", err)
-                });
             },
         },
     };

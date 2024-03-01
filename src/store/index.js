@@ -98,8 +98,8 @@ export default createStore({
     },
     async updateProduct(context, payload) {
       try{
-        let {msg} = await axios.patch(`${matrixUrl}products/update/${payload.id}`)
-        if(msg) {
+        let {msg} = (await axios.patch(`${matrixUrl}products/update/${payload.prodID}`, payload)).data
+        
           context.dispatch('fetchProducts')
           sweet({
             title: 'Update product',
@@ -107,20 +107,18 @@ export default createStore({
             icon: "success",
             timer: 2000
           }) 
-        }
       }catch(e) {
         sweet({
           title: 'Error',
           text: 'An error occurred when updating a product.',
-          icon: "success",
+          icon: "error",
           timer: 2000
         })
       }
     },
     async deleteProduct(context, payload) {
       try{
-        let {msg} = await axios.delete(`${matrixUrl}products/${payload.id}`)
-        if(msg) {
+        let {msg} = (await axios.delete(`${matrixUrl}products/${payload.prodID}`)).data
           context.dispatch('fetchProducts')
           sweet({
             title: 'Delete product',
@@ -128,7 +126,6 @@ export default createStore({
             icon: "success",
             timer: 2000
           }) 
-        }
       }catch(e) {
         sweet({
           title: 'Error',
@@ -202,8 +199,7 @@ export default createStore({
     },
     async updateUser(context, payload) {
       try{
-        let {msg} = await axios.patch(`${matrixUrl}users/update/${payload.id}`)
-        if(msg) {
+        let {msg} = (await axios.patch(`${matrixUrl}users/update/${payload.id}`, payload)).data
           context.dispatch('fetchUsers')
           sweet({
             title: 'Update user',
@@ -211,7 +207,6 @@ export default createStore({
             icon: "success",
             timer: 2000
           }) 
-        }
       }catch(e) {
         sweet({
           title: 'Error',
@@ -223,8 +218,7 @@ export default createStore({
     },
     async deleteUser(context, payload) {
       try{
-        let {msg} = await axios.delete(`${matrixUrl}users/${payload.id}`)
-        if(msg) {
+        let {msg} = (await axios.delete(`${matrixUrl}users/${payload.id}`)).data
           context.dispatch('fetchUsers')
           sweet({
             title: 'Delete user',
@@ -232,7 +226,6 @@ export default createStore({
             icon: "success",
             timer: 2000
           }) 
-        }
       }catch(e) {
         sweet({
           title: 'Error',
