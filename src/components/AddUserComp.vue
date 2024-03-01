@@ -1,117 +1,62 @@
 <template>
-    <!-- Button trigger modal -->
-    <button
-      type="button"
-      class=""
-      data-bs-toggle="modal"
-      data-bs-target="#exampleModal"
-    >
-      Add New User
-    </button>
-  
-    <!-- Modal -->
-    <div
-      class="modal fade"
-      id="exampleModal"
-      tabindex="-1"
-      aria-labelledby="exampleModalLabel"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h1 class="modal-title fs-5" id="exampleModalLabel">Add User</h1>
-            <button
-              type="button"
-              class="btn-close"
-              data-bs-dismiss="modal"
-              aria-label="Close"
-            >X</button>
-          </div>
-          <div class="modal-body">
-            <div class="inputs">
-              <label>First Name</label>
-              <input type="text" v-model="firstName" placeholder="..." /><br />
+    <div>
+        <button class="btn" type="btn" data-bs-toggle="modal" data-bs-target="#exampleModal-1">Add</button>
+
+        <div class="modal fade" id="exampleModal-1" tabindex="-1" aria-labelledby="exampleModalLabel-1" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h2 class="modal-title" id="exampleModalLabel">Add User</h2>
+                        <button class="btn-close" type="button" aria-label="close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <input class="input m-2" type="text" placeholder="User Name" v-model="model.user.firstName">
+                        <input class="input m-2" type="text" placeholder="User Surname" v-model="model.user.lastName">
+                        <input class="input m-2" type="text" placeholder="Age" v-model="model.user.userAge">
+                        <input class="input m-2" type="text" placeholder="Gender" v-model="model.user.gender">
+                        <input class="input m-2" type="text" placeholder="User Role" v-model="model.user.userRole">
+                        <input class="input m-2" type="text" placeholder="User Email" v-model="model.user.emailAdd">
+                        <input class="input m-2" type="text" placeholder="User Password" v-model="model.user.userPass">
+                        <input class="input m-2" type="text" placeholder="User Profile" v-model="model.user.userProfile">
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn" type="button" data-bs-dismiss="modal">Close</button>
+                        <button class="btn" type="button" @click="addUser">Add</button>
+                    </div>
+                </div>
             </div>
-  
-            <div class="inputs">
-              <label>Last Name</label>
-              <input type="text" v-model="lastName" placeholder="..." /><br />
-            </div>
-  
-            <div class="inputs">
-              <label>Email Address</label>
-              <input
-                type="text"
-                v-model="emailAdd"
-                placeholder="..."
-              /><br />
-            </div>
-  
-            <div class="inputs">
-              <label>Gender</label>
-              <input type="text" v-model="gender" placeholder="..." /><br />
-            </div>
-  
-            <div class="inputs">
-              <label>Age</label>
-              <input type="number" v-model="age" placeholder="..." /><br />
-            </div>
-  
-            <div class="inputs">
-              <label>Password</label>
-              <input type="password" v-model="userPass" />
-            </div>
-          </div>
-          <div class="modal-footer">
-            
-            <button type="button" @click="addNewUser()">Submit</button>
-          </div>
         </div>
-      </div>
     </div>
   </template>
   
   <script>
-  import axios from "axios";
-  
   export default {
-    data() {
-      return {
-        firstName: "",
-        lastName: "",
-        emailAdd: "",
-        gender: "",
-        age: "",
-        userPass: "",
-      };
-    },
-    methods: {
-      async addNewUser() {
-        try {
-          await axios.post("https://nodejseomp-fpm6.onrender.com/register", {
-            firstName: this.firstName,
-            lastName: this.lastName,
-            emailAdd: this.emailAdd,
-            gender: this.gender,
-            age: this.age,
-            userPass: this.userPass,
-          });
-          this.firstName = "";
-          this.lastName = "";
-          this.emailAdd = "";
-          this.gender = "";
-          this.age = "";
-          this.userPass = "";
-          this.$router.push("/admin");
-          alert("User Has Successfully Been Added");
-          window.location.reload();
-        } catch (error) {
-          alert(error);
-        }
-      },
-    },
-  };
+        data() {
+            return {
+                model: {
+                    user: {
+                        firstName: "",
+                        lastName: "",
+                        userAge: "",
+                        gender: "",
+                        userRole: "",
+                        emailAdd: "",
+                        userPass: "",
+                        userProfile: "",
+                    }
+                }
+            };
+        },
+        methods: {
+            addUser() {
+                this.$store.dispatch("addUser", this.model.user);
+                setTimeout(() => {
+                    location.reload();
+                }, 500);
+            },
+        },
+    };
+
 </script>
 
 <style lang="scss" scoped>

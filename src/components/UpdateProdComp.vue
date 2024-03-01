@@ -1,108 +1,78 @@
 <template>
-    <!-- Button trigger modal -->
-    <button
-      type="button"
-      class=""
-      data-bs-toggle="modal"
-      data-bs-target="#editProduct"
-    >
-      Edit Product
-    </button>
-  
-    <!-- Modal -->
-    <div
-      class="modal fade"
-      id="editProduct"
-      tabindex="-1"
-      aria-labelledby="exampleModalLabel"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h1 class="modal-title fs-5" id="exampleModalLabel">
-              Update Product
-            </h1>
-            <button
-              type="button"
-              class="btn-close"
-              data-bs-dismiss="modal"
-              aria-label="Close"
-            >
-              X
-            </button>
-          </div>
-          <div class="modal-body">
-  
-            <div class="inputs">
-              <label>Product Name</label>
-              <input type="text" v-model="prodName" />
+    <div>
+        <button class="btn" type="button" @click="editModal(product.prodID)" data-bs-toggle="modal" :data-bs-target="'#exampleModal' + product.prodID">Edit</button>
+        <div class="modal fade" :id="'exampleModal' + product.prodID" tabindex="-1" :aria-labelledBy="'exampleModalLabel' + product.prodID" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h2 class="modal-title" id="exampleModalLabel">Edit</h2>
+                        <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <input class="input" type="text" name="name" placeholder="Product Name" v-model="editProduct.prodName">
+                        <input class="input" type="text" name="name" placeholder="Quantity" v-model="editProduct.quantity">
+                        <input class="input" type="text" name="name" placeholder="Price" v-model="editProduct.amount">
+                        <input class="input" type="text" name="name" placeholder="Category" v-model="editProduct.category">
+                        <input class="input" type="text" name="name" placeholder="Url" v-model="editProduct.prodUrl">
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn" type="button" data-bs-dismiss="modal">Close</button>
+                        <button class="btn" type="button" data-bs-dismiss="modal" @click="updateProd(product.prodID)">SAVE</button>
+                    </div>
+                </div>
             </div>
-  
-            <div class="inputs">
-              <label>Quantity</label>
-              <input type="number" v-model="quantity" />
-            </div>
-  
-            <div class="inputs">
-              <label>Price</label>
-              <input type="number" v-model="amount" />
-            </div>
-  
-            <div class="inputs">
-              <label>Category</label>
-              <input type="text" v-model="category" />
-            </div>
-  
-            <div class="inputs">
-              <label>Image URL</label>
-              <input type="url" v-model="prodUrl" />
-            </div>
-  
-          </div>
-          <div class="modal-footer">
-            <button type="button" @click="updateProduct(productID)" class="">Save changes</button>
-          </div>
         </div>
-      </div>
     </div>
   </template>
   
   <script>
-  import axios from "axios";
   export default {
-    data() {
-      return {
-          prodName: "",
-          quantity: "",
-          amount: "",
-          category: "",
-          prodUrl: "",
-      };
-    },
-    methods: {
-      async updateProduct(id) {
-          try {
-              await axios.patch(`https://nodejseomp-fpm6.onrender.com/Products/${id}`, {
-                  prodName: this.prodName,
-                  quantity: this.quantity,
-                  amount: this.amount,
-                  category: this.category,
-                  prodUrl: this.prodUrl,
-              });
-              this.prodName= "";
-              this.quantity = "";
-              this.amount= ""; 
-              this.category= "";
-              this.prodUrl= "";
-              alert("Product Has Been Updated");
-              window.location.reload();
-          } catch (error) {
-              alert (error);
-          }
-      },
-    },
-  };
+        props: ["product"],
+        data() {
+            return {
+                editProduct: {
+                    ...this.product,
+                },
+                editProductID: null,
+                model: {
+                    product: {
+                        prodName: "",
+                        quantity: "",
+                        amount: "",
+                        category: "",
+                        prodUrl: "",
+                    },
+                },
+            };
+        },
+        computed: {
+            currentProd() {
+                return this.$store.state.product;
+            },
+        },
+        methods: {
+            editModal(prodID) {
+                this.editProductID = prodID;
+                this.editProduct = {
+                    ...this.$store.state.products.find(
+                        (product) => product.prodID === prodID
+                    ),
+                };
+            },
+            updateProd(prodID) {
+                this.$store.dispatch("updateProducts", {
+                    prodID: prodID,
+                    ...this.editProduct,
+                })
+                .then(() => {
+                    console.log("Updated");
+                })
+                .catch((err) => {
+                    console.error("Error: ", err)
+                });
+            },
+        },
+    };
 </script>
 
 <style lang="scss" scoped>

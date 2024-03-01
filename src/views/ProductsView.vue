@@ -72,8 +72,7 @@ export default {
 };
 </script>
 
-<style>
-
+<style scoped>
 
 .buttons {
   display: flex;
@@ -93,6 +92,45 @@ export default {
   cursor: pointer;
   margin-right: 10px;
 }
+
+input {
+  color: #eeebdd !important;
+  border: 2px solid #EF370E;
+  background: #EF370E !important;
+  border-radius: 20px;
+}
+
+::placeholder {
+  color: #eeebdd;
+}
+
+.display {
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+}
+
+@media only screen and (max-width: 705px) {
+    .display {
+        display: grid;
+        grid-template-columns: auto auto;
+    }
+}
+@media only screen and (max-width: 305px) {
+    .display {
+        display: grid;
+        grid-template-columns: auto;
+    }
+    .buttons {
+        display: flex;
+        flex-direction: column;
+        
+    }
+    input, .sort {
+        width: 90%;
+        margin: 10px;
+    }
+}
+
 
 
 

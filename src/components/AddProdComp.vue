@@ -1,110 +1,55 @@
 <template>
-    <button
-    type="button"
-    class=""
-    data-bs-toggle="modal"
-    data-bs-target="#staticBackdrop"
-  >
-    Add a Product
-  </button>
+    <div>
+        <button class="btn" type="btn" data-bs-toggle="modal" data-bs-target="#exampleModal">Add</button>
 
-  <!-- Modal -->
-  <div
-    class="modal fade"
-    id="staticBackdrop"
-    data-bs-backdrop="static"
-    data-bs-keyboard="false"
-    tabindex="-1"
-    aria-labelledby="staticBackdropLabel"
-    aria-hidden="true"
-  >
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h1 class="modal-title fs-5" id="staticBackdropLabel">Add Product</h1>
-          <button
-            type="button"
-            class="btn-close"
-            data-bs-dismiss="modal"
-            aria-label="Close"
-          >
-            X
-          </button>
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h2 class="modal-title" id="exampleModalLabel">Add Product</h2>
+                        <button class="btn-close" type="button" aria-label="close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <input class="input m-2" type="text" placeholder="Product Name" v-model="model.product.prodName">
+                        <input class="input m-2" type="text" placeholder="Quantity" v-model="model.product.quantity">
+                        <input class="input m-2" type="text" placeholder="Price" v-model="model.product.amount">
+                        <input class="input m-2" type="text" placeholder="Category" v-model="model.product.category">
+                        <input class="input m-2" type="text" placeholder="Url" v-model="model.product.prodUrl">
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn" type="button" data-bs-dismiss="modal">Close</button>
+                        <button class="btn" type="button" data-bs-dismiss="modal" @click="addProduct">Add</button>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="modal-body">
-          <div class="inputs">
-            <label>Product Name</label>
-            <input
-              type="text"
-              v-model="prodName"
-              placeholder="..."
-            /><br />
-          </div>
-
-          <div class="inputs">
-            <label>Quantity</label>
-            <input type="number" v-model="quantity" placeholder="..." /><br />
-          </div>
-
-          <div class="inputs">
-            <label>Price</label>
-            <input type="number" v-model="amount" placeholder="..." /><br />
-          </div>
-
-          <div class="inputs">
-            <label>Category</label>
-            <input type="text" v-model="category" placeholder="..." /><br />
-          </div>
-
-          <div class="inputs">
-            <label>Image URL</label>
-            <input type="url" v-model="prodUrl" /><br />
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" @click="addNewProduct()">Submit</button>
-        </div>
-      </div>
     </div>
-  </div>
 </template>
 
 <script>
-import axios from 'axios';
-
-    export default {
-  data() {
-    return {
-      prodName: "",
-      quantity: "",
-      amount: "",
-      category: "",
-      prodUrl: "",
+export default {
+        data() {
+            return {
+                model: {
+                    product: {
+                        prodName: "",
+                        quantity: "",
+                        amount: "",
+                        category: "",
+                        prodUrl: "",
+                    }
+                }
+            };
+        },
+        methods: {
+            addProduct() {
+                this.$store.dispatch("addProduct", this.model.product);
+                setTimeout(() => {
+                    location.reload();
+                }, 500);
+            },
+        },
     };
-  },
-  methods: {
-    async addNewProduct() {
-      try {
-        await axios.post("https://nodejseomp-fpm6.onrender.com/product", {
-          prodName: this.prodName,
-          quantity: this.quantity,
-          amount: this.amount,
-          category: this.category,
-          prodUrl: this.prodUrl,
-        });
-        this.prodName = "";
-        this.quantity = "";
-        this.amount = "";
-        this.category = "";
-        this.prodUrl = "";
-        alert("Product was successfully added");
-        window.location.reload();
-      } catch (error) {
-        alert(error);
-      }
-    },
-  },
-};
 </script>
 
 

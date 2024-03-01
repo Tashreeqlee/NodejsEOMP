@@ -20,7 +20,7 @@ export default createStore({
   },
   mutations: {
     setProducts: (state, value) => {
-      state.products = value
+      state.products =value
     },
     setProduct: (state, value) => {
       state.product= value
@@ -52,6 +52,9 @@ export default createStore({
    
     setUsers: (state, value) => {
       state.users= value
+    },
+    setUser: (state, value) => {
+      state.user= value
     }
   },
   actions: {

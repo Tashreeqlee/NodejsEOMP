@@ -1,147 +1,175 @@
 <template>
-    <h1 class="text-center animate__animated animate__fadeInUp">Admin</h1>
-  <div class="userSection">
-    <div class="titles">
-      <h3>Users</h3>
-      <div>
-        <AddUserComp />
-      </div>
+    <div class="overflow-hidden text-center" id="hero">
+        <div class="col-md-5 p-lg-5 mx-auto my-5">
+            <h1 class="display-5">Products</h1>
+        </div>
     </div>
-    <div class="userTable">
-      <table>
-        <tr>
-          <th>userID</th>
-          <th>First Name</th>
-          <th class="remove">Last Name</th>
-          <th class="emailHead">Email Address</th>
-          <th class="remove">Gender</th>
-          <th class="remove">Age</th>
-          <th>Action</th>
-          <th>Action</th>
-        </tr>
-        <tbody v-for="user of users" :key="user.userID" :user="user">
-          <tr v-if="users">
-            <td>{{ user.userID }}</td>
-            <td>{{ user.firstName }}</td>
-            <td class="remove">{{ user.lastName }}</td>
-            <td class="emailHead">{{ user.emailAdd }}</td>
-            <td class="remove">{{ user.gender }}</td>
-            <td class="remove">{{ user.userAge }}</td>
-            <td><button @click="delUser(user.userID)" class="delButton">Delete</button></td>
-            <td>
-              <UpdateUserComp/>
-            </td>
-          </tr>
-          <tr v-else>
-            no
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-
-  <div class="productSection">
-    <div class="titles">
-      <h3>Products</h3>
-      <div>
-        <AddProdComp />
-      </div>
-    </div>
-    <div class="productsTable">
-      <table>
+    <div>
+        <AddProdComp/>
+        <table class="table-responsive-md table table-bordered">
         <thead>
-          <tr>
-            <th class="remove">Product ID</th>
-            <th>Product Name</th>
-            <th class="remove">Quantity</th>
-            <th class="remove">Price</th>
-            <th class="imgHead">Category</th>
-            <th class="imgHead">Image</th>
-            <th>Action</th>
-            <th>Action</th>
-          </tr>
+            <tr>
+                <th scope="col">Product Id</th>
+                <th scope="col">Product Name</th>
+                <th class="no2" scope="col">Quantity</th>
+                <th class="no1" scope="col">Price</th>
+                <th class="no1" scope="col">Category</th>
+                <th class="no" scope="col">ProductUrl</th>
+                <th scope="col">Edit/Delete Product</th>
+            </tr>
         </thead>
-        <tbody
-          v-for="product of products"
-          :key="product.prodID"
-          :product="product"
-        >
-          <tr v-if="products">
-            <td class="remove">{{ product.prodID }}</td>
-            <td>{{ product.prodName }}</td>
-            <td class="remove">{{ product.quantity }}</td>
-            <td class="remove">{{ product.amount }}</td>
-            <td class="imgHead">{{ product.category }}</td>
-            <td class="imgHead"><img :src="product.prodUrl" :alt="product.prodName" /></td>
-            <td>
-              <button @click="delProduct(product.prodID)" class="delButton">Delete</button>
-            </td>
-            <td>
-                <UpdateProdComp/>
-            </td>
-          </tr>
-          <tr v-else>
-            no
-          </tr>
+        <tbody class="prod-display" v-for="product in products" :key="product.prodID" :product="product">
+            <tr v-if="products">
+                <td>{{ product.prodID }}</td>
+                <td>{{ product.prodName }}</td>
+                <td class="no2">{{ product.quantity }}</td>
+                <td class="no1">{{ product.amount }}</td>
+                <td class="no1">{{ product.category }}</td>
+                <td class="no"><img class="admin-img" :src=product.prodUrl></td>
+                <td><UpdateProdComp :product="product"/>
+                    <button class="btn" @click="deleteProduct(product.prodID)">Delete</button>
+                </td>
+            </tr>
+            <div class="m-5" v-else>
+                <SpinnerComp/>
+            </div>
         </tbody>
-      </table>
+        </table>
+        <div class="overflow-hidden text-center" id="hero">
+        <div class="col-md-5 p-lg-5 mx-auto my-5">
+            <h1 class="display-5">Users</h1>
+        </div>
     </div>
-  </div>
+        <AddUserComp/>
+        <table class="table-responsive-md table table-bordered">
+        <thead>
+            <tr>
+                <th scope="col">User Id</th>
+                <th scope="col">First name</th>
+                <th scope="col">Last name</th>
+                <th class="no2" scope="col">Age</th>
+                <th class="no2" scope="col">Gender</th>
+                <th class="no" scope="col">User Role</th>
+                <th class="no1" scope="col">Email Address</th>
+                <th class="no" scope="col">Password</th>
+                <th class="no" scope="col">User Profile</th>
+                <th scope="col">Edit/Delete Product</th>
+            </tr>
+        </thead>
+        <tbody class="user-display" v-for="user in users" :key="user.userID" :user="user">
+            <tr v-if="users">
+                <td>{{ user.userID }}</td>
+                <td>{{ user.firstName }}</td>
+                <td>{{ user.lastName }}</td>
+                <td class="no2">{{ user.userAge }}</td>
+                <td class="no2">{{ user.gender }}</td>
+                <td class="no">{{ user.userRole }}</td>
+                <td class="no1">{{ user.emailAdd }}</td>
+                <td class="no">{{ user.userPass }}</td>
+                <td class="no"><img class="admin-img" :src=user.userProfile></td>
+                <td><UpdateUserComp :user="user"/>
+                    <button class="btn" @click="deleteUser(user.userID)">Delete</button>
+                </td>
+            </tr>
+            <div class="m-5" v-else>
+                <SpinnerComp/>
+            </div>
+        </tbody>
+        </table>
+    </div>
 </template>
-
 <script>
 import AddProdComp from '@/components/AddProdComp.vue';
 import AddUserComp from '@/components/AddUserComp.vue';
 import UpdateProdComp from '@/components/UpdateProdComp.vue';
 import UpdateUserComp from '@/components/UpdateUserComp.vue';
-import axios from 'axios';
-
-
+import SpinnerComp from '@/components/SpinnerComp.vue';
 export default {
-  created() {
-    this.$store.dispatch("fetchProducts"), this.$store.dispatch("fetchUsers");
-  },
   computed: {
-    products() {
-      return this.$store.state.products;
-    },
-    users() {
-      return this.$store.state.users;
-    },
-  },
-  methods: {
-    async delProduct(id) {
-      try {
-        await axios.delete(
-          `https://nodejseomp-fpm6.onrender.com/delete/${id}`
-        );
-        this.$store.dispatch("fetchProducts");
-        alert("Product Removed");
-        window.location.reload();
-      } catch (error) {
-        alert(error);
-      }
-    },
-    async delUser(id) {
-      try {
-        await axios.delete(`https://nodejseomp-fpm6.onrender.com/users/${id}`);
-        this.$store.dispatch("fetchUsers");
-        alert("This user has been removed");
-        window.location.reload();
-      } catch (error) {
-        alert(error);
-      }
-    },
-  },
+            products() {
+                return this.$store.state.products;
+            },
+            product() {
+                return this.$store.state.product;
+            },
+            users() {
+                return this.$store.state.users;
+            },
+            user() {
+                return this.$store.state.user;
+            }
+        },
+        mounted() {
+            this.$store.dispatch("fetchProducts")
+            this.$store.dispatch("fetchUsers")
+        },
+        methods: {
+            deleteProduct(prodID) {
+                if (confirm("you sure?")) {
+                    this.$store.dispatch("deleteProduct", prodID);
+                    setTimeout(() => {
+                        location.reload()
+                    }, 500)
+                }
+            },
+            deleteUser(id) {
+                if (confirm("You sure?")) {
+                    this.$store.dispatch("deleteUser", id);
+                    setTimeout(() => {
+                        location.reload();
+                    }, 500);
+                }
+            },
+        },
   components: {
     AddUserComp,
     AddProdComp,
     UpdateProdComp,
-    UpdateUserComp
+    UpdateUserComp,
+    SpinnerComp
   },
 };
 </script>
+<style scoped>
 
-<style lang="scss" scoped>
+#hero {
+    background-color: black;
+    color: white;
+    height: 10rem;
+  }
 
+  .admin-img {
+    width: 100px;
+    height: 100px;
+  }
+
+  table {
+    border-color: black;
+  }
+
+  .btn {
+    background-color: black;
+    color: white;
+    margin-top: 5px;
+  }
+  .btn:hover {
+        background-color: white;
+        color: black;
+    }
+
+     @media screen and (max-width: 1000px) {
+        .no {
+            display:none;
+        }
+    }
+    @media screen and (max-width: 800px) {
+        .no {
+            display:none;
+        }
+    }
+    @media screen and (max-width: 500px) {
+        .no, .no1, .no2 {
+            display:none;
+        }
+    }
 </style>
